@@ -6,16 +6,16 @@
   <body>
     <div id="version"></div>
     <script>
-      // جلب البيانات من الرابط الذي يحتوي على version_app
-      fetch('https://raw.githubusercontent.com/AljokerAlmsri/daawa_app/main/ApplicationVersion%2Cjson')
-        .then(response => response.json()) // تحويل البيانات إلى JSON
-        .then(data => {
-          // عرض القيمة في العنصر الذي له معرف "version"
+      async function getVersion() {
+        try {
+          const response = await fetch('https://raw.githubusercontent.com/AljokerAlmsri/daawa_app/main/ApplicationVersion%2Cjson');
+          const data = await response.json();
           document.getElementById("version").innerHTML = data.version_app;
-        })
-        .catch(error => {
+        } catch (error) {
           console.error('حدث خطأ:', error);
-        });
+        }
+      }
+      getVersion();
     </script>
   </body>
 </html>
